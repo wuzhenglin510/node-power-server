@@ -17,7 +17,7 @@ Node-Power-Server 是为了让node中间件(前端后置层)的实现更简单�
     npm install node_power_server --save
 
 ## Usage
-
+```javascript
     const path = require("path")
     const NodePowerServer = require("node_power_server")
     
@@ -43,7 +43,7 @@ Node-Power-Server 是为了让node中间件(前端后置层)的实现更简单�
     
     //正式启动，绑定端口
     server.start()
-
+```
 ## 前置api写法
 
 ---
