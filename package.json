@@ -1,0 +1,20 @@
+{
+  "name": "common_proxy",
+  "version": "1.0.0",
+  "description": "common proxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "leo",
+  "license": "ISC",
+  "dependencies": {
+    "@qtk/schema-web-request-framework": "^1.1.3",
+    "koa": "^2.5.1",
+    "koa-body": "^4.0.3",
+    "koa-static": "^5.0.0",
+    "log4js": "^2.10.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  }
+}
