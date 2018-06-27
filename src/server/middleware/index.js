@@ -1,22 +1,35 @@
 class MiddllewareManager {
     constructor() {
-        this.beforeMiddlewares = []
-        this.afterMiddlewares = []
+        this.middlewares = []
     }
 
     add(pattern, middlewareFunc, execPoint = Constant.ExecBefore) {
         if (execPoint == Constant.ExecBefore) {
-            this.beforeMiddlewares.push(new Middleware(pattern, middlewareFunc))
+            this.middlewares.push(before_middleware_builder(pattern, middlewareFunc))
         } else {
-            this.afterMiddlewares.unshift(new Middleware(pattern, middlewareFunc))
+            this.middlewares.push(after_middleware_builder(pattern, middlewareFunc))
         }
+        return this
     }
 }
 
-class Middleware {
-    constructor(pattern, middlewareFunc) {
-        this.pattern = pattern
-        this.exec = middlewareFunc
+function before_middleware_builder(pattern, middlewareFunc) {
+    return async (ctx, next) => {
+        let regex = new RegExp(pattern)
+        if (regex.test(ctx.url)) {
+            await middlewareFunc(ctx)
+        }
+        await next()
+    }
+}
+
+function after_middleware_builder(pattern, middlewareFunc) {
+    return async (ctx, next) => {
+        await next()
+        let regex = new RegExp(pattern)
+        if (regex.test(ctx.url)) {
+            await middlewareFunc(ctx)
+        }
     }
 }
 

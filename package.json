@@ -1,6 +1,6 @@
 {
   "name": "node_power_server",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "node_power_server",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "koa": "^2.5.1",
     "koa-body": "^4.0.3",
+    "koa-proxies": "^0.7.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "log4js": "^2.10.0",
