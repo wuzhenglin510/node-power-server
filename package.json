@@ -1,7 +1,7 @@
 {
-  "name": "node-power-server",
+  "name": "node_power_server",
   "version": "1.0.2",
-  "description": "node-power-server",
+  "description": "node_power_server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
