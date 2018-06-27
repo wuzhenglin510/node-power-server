@@ -1,7 +1,7 @@
 {
-  "name": "node_power_server",
+  "name": "node-power-server",
   "version": "1.0.2",
-  "description": "node_power_server",
+  "description": "node-power-server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,7 @@
   "dependencies": {
     "koa": "^2.5.1",
     "koa-body": "^4.0.3",
+    "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "log4js": "^2.10.0",
     "mocha": "^5.2.0",
@@ -22,8 +23,8 @@
     "node power server",
     "node-power-server"
   ],
-  "repository": { 
-    "type" : "git",
-    "url" : "https://github.com/wuzhenglin510/node_power_server.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wuzhenglin510/node-power-server.git"
   }
 }
