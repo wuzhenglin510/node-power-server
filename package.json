@@ -1,6 +1,6 @@
 {
   "name": "node_power_server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "node_power_server",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,14 @@
     "mocha": "^5.2.0",
     "request": "^2.87.0",
     "request-promise": "^4.2.2"
+  },
+  "keywords": [
+    "node_power_server",
+    "node power server",
+    "node-power-server"
+  ],
+  "repository": { 
+    "type" : "git",
+    "url" : "https://github.com/wuzhenglin510/node_power_server.git"
   }
 }
