@@ -1,6 +1,6 @@
 {
   "name": "node_power_server",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "node_power_server",
   "main": "index.js",
   "scripts": {

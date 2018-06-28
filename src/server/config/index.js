@@ -9,5 +9,6 @@ module.exports = class Config {
         this.proxyTable = new ProxyTable()
         this.handlerDir = config ? config.handlerDir : null
         this.staticRoot = config ? config.staticRoot : null
+        this.enableProxyLog = config.enableProxyLog ? true : false
     }
 }
