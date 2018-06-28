@@ -48,7 +48,7 @@ module.exports = class Server extends EventEmitter {
             for (let rule of this.config.proxyTable.rules) {
                 this._server.use(Koa_Proxy(rule.prefix, {
                     target: rule.dst,
-                    changeOrigin: true,
+                    changeOrigin: false,
                     rewrite: path => path.replace(rule.prefix, ""),
                     logs: this.config.enableProxyLog
                 }))
