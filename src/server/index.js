@@ -50,6 +50,7 @@ module.exports = class Server extends EventEmitter {
                     target: rule.dst,
                     changeOrigin: true,
                     rewrite: path => path.replace(rule.prefix, ""),
+                    logs: this.config.enableProxyLog
                 }))
                 this.emit("init_process", `install proxy rule [prefix: ${rule.prefix} -> dst: ${rule.dst}]`)
             }
