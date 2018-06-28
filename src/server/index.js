@@ -13,7 +13,7 @@ module.exports = class Server extends EventEmitter {
         super();
         this.config = new Config(config)
         this.middlewareManage = new Middleware.Manager()
-        this._apis = []
+        this._apis = {}
         this._server = new Koa()
     }
 
@@ -59,17 +59,14 @@ module.exports = class Server extends EventEmitter {
     _initFrontApiExector() {
         if (this.config.handlerDir) {
             this._apis = fs.readdirSync(this.config.handlerDir).filter(filename => fs.lstatSync(path.join(this.config.handlerDir, filename)).isDirectory())
-            this.emit("init_process", JSON.stringify(this._apis))
+                         .reduce((prev, curr) => {
+                            prev[curr] = path.join(this.config.handlerDir, curr)
+                            return prev
+                         }, {})
+            this.emit("init_process", `scaning apis : ${JSON.stringify(this._apis)}`)
             this._server.use(async (ctx) => {
-                if (this._apis.length > 0) {
-                    for (let api of this._apis) {
-                        let regex = new RegExp(api) 
-                        if (regex.test(ctx.request.originalUrl)) {
-                            await require(path.join(this.config.handlerDir, api))(ctx)
-                        }
-                        break
-                    }
-                }
+                let api = ctx.request.path.replace("/", "")
+                if (this._apis[api]) await require(this._apis[api])(ctx)
             })
         }
     }
