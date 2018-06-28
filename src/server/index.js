@@ -19,8 +19,8 @@ module.exports = class Server extends EventEmitter {
 
     start() {
         this._initStatic()
-        this._initMiddleware()
         this._initProxyTable()
+        this._initMiddleware()
         this._initFrontApiExector()
         this._server.listen(this.config.port)
         this.emit("started")
