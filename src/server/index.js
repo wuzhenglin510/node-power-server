@@ -33,16 +33,6 @@ module.exports = class Server extends EventEmitter {
         }
     }
 
-    _initMiddleware() {
-        this._server.use(Koa_Body({multipart:true}))
-        if (this.middlewareManage.middlewares.length > 0) {
-            for(let middleware of this.middlewareManage.middlewares) {
-                this._server.use(middleware)
-            }
-            this.emit("init_process", `install ${this.middlewareManage.middlewares.length} custom middleware successfully`)
-        }
-    }
-
     _initProxyTable() {
         if (this.config.proxyTable.rules.length > 0) {
             for (let rule of this.config.proxyTable.rules) {
@@ -56,6 +46,18 @@ module.exports = class Server extends EventEmitter {
             }
         }
     }
+
+    _initMiddleware() {
+        this._server.use(Koa_Body({multipart:true}))
+        if (this.middlewareManage.middlewares.length > 0) {
+            for(let middleware of this.middlewareManage.middlewares) {
+                this._server.use(middleware)
+            }
+            this.emit("init_process", `install ${this.middlewareManage.middlewares.length} custom middleware successfully`)
+        }
+    }
+
+    
 
     _initFrontApiExector() {
         if (this.config.handlerDir) {
