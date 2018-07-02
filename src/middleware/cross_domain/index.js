@@ -5,5 +5,6 @@ module.exports = (origin = "*",
         ctx.set("Access-Control-Allow-Origin", origin);
         ctx.set("Access-Control-Allow-Methods", method);
         ctx.set("Access-Control-Allow-Credentials", enableCookie);
+        ctx.body = ""
     }
 }
