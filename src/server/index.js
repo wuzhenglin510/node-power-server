@@ -67,6 +67,7 @@ module.exports = class Server extends EventEmitter {
                          }, {})
             this.emit("init_process", `scaning apis : ${JSON.stringify(this._apis)}`)
             this._server.use(async (ctx) => {
+                if (ctx.request.method == 'OPTIONS') return
                 let api = ctx.request.path.replace("/", "")
                 if (this._apis[api]) await require(this._apis[api])(ctx)
             })
