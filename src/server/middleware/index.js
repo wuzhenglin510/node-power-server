@@ -29,7 +29,7 @@ function after_middleware_builder(pattern, middlewareFunc) {
         await next()
         let regex = new RegExp(pattern)
         if (regex.test(ctx.url)) {
-            await middlewareFunc(ctx)
+            await middlewareFunc(ctx, next)
         }
     }
 }
