@@ -22,7 +22,7 @@ module.exports = class Server extends EventEmitter {
         this._initProxyTable()
         this._initMiddleware()
         this._initFrontApiExector()
-        this._server.listen(this.config.port, () =>{this.emit("started")})
+        this._server.listen(this.config.port, () =>{this.emit("started", `listening on port: ${this.config.port}`)})
     }
 
     _initStatic() {
@@ -69,7 +69,15 @@ module.exports = class Server extends EventEmitter {
             this._server.use(async (ctx) => {
                 if (ctx.request.method == 'OPTIONS') return
                 let api = ctx.request.path.replace("/", "")
-                if (this._apis[api]) await require(this._apis[api])(ctx)
+                if (this._apis[api]) {
+                    try {
+                        let reponse = await require(this._apis[api])(ctx.request)
+                        ctx.body = reponse;
+                    } catch (err) {
+                        this.emit("error", err);
+                        ctx.status = 500;
+                    }
+                }
             })
         }
     }

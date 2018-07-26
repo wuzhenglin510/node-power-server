@@ -15,8 +15,8 @@ describe('test proxy feather', function() {
         server.config.proxyTable.add("/api9081", "http://127.0.0.1:9081/mc")
                                 .add("/api9082", "http://127.0.0.1:9082")
         server.start()
-        const api9081Server = new Koa().use((ctx) => { ctx.body = `hello ${ctx.request.url.replace("/", "")}, i am 9081` }).listen(9081)
-        const api9082Server = new Koa().use((ctx) => { ctx.body = `hello ${ctx.request.url.replace("/", "")}, i am 9082` }).listen(9082)
+        const api9081Server = new Koa().use((ctx, next) => { ctx.body = `hello ${ctx.request.url.replace("/", "")}, i am 9081` }).listen(9081)
+        const api9082Server = new Koa().use((ctx, next) => { ctx.body = `hello ${ctx.request.url.replace("/", "")}, i am 9082` }).listen(9082)
     })
 
     it("should get 9081 response", async function() {
